@@ -23,7 +23,7 @@ const Favourite = () => {
   .then((res)=>{
       setLoading(false)
       setFavouriteData(res.data)
-      console.log(res.data)
+      
   }).catch((err)=>{
       setLoading(false)
       console.log(err)
