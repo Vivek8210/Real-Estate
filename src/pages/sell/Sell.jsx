@@ -6,7 +6,7 @@ const Sell = () => {
   const[data, setData]=useState([])
   const [loading, setLoading]=useState(true)
 
-
+// ----------------------------------fetch all sell data------------------------------------
   useEffect(()=>{
       setLoading(true)
 
@@ -17,17 +17,33 @@ const Sell = () => {
       .then((res)=>{
           setLoading(false)
           setData(res.data)
-          console.log(res.data)
       }).catch((err)=>{
           setLoading(false)
           console.log(err)
       })
   },[setLoading])
-console.log(data)
+
+
+   // ...........................post favourite data...........................................
+   const handleHeart=(ele)=>{
+    // console.log(ele)
+    // axios
+    // .post("http://localhost:8080/cart", ele)
+    // .then((res) => {
+    //   // console.log(res.data)
+    //   alert("data add to Favourite successfully");
+    // })
+    // .catch((err) => {
+    //   alert("data failed to add Favourite");
+    // });
+   
+
+   }
  
   return (
     <>
-    <h1 className='text'>See the All Sale Place </h1>
+    {/* --------------------------display all sell data----------------------------------------- */}
+    <h1 className='text' style={{color:"#27AE60"}}>See the All Sale Place </h1>
      <div className="main-container-Sell">
       
     {data.map((ele)=>(
@@ -42,7 +58,7 @@ console.log(data)
 
       <div className="priceAndfavourite">
         <div>${ele.Price}</div>
-        <div><BsHeart/></div>
+        <div><BsHeart onClick={()=>handleHeart(ele)} /></div>
       </div>
       <h4 className="name">{ele.name}</h4>
       <p className="location">{ele.location}</p>

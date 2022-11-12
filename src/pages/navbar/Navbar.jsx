@@ -18,14 +18,15 @@ const Navbar = () => {
             <div className='container'>
                 <h1><span><BsFillHouseFill />Real</span>Estate</h1>
                 
-                <button className='btn'>Sign In</button>
+                
                 <ul className={click ? 'nav-menu active' : 'nav-menu'}>
                     <li> <Link to="/">Home</Link> </li>
                     <li><Link to="/rent">Rent</Link></li>
                     <li><Link to="/sell">Sell</Link></li>
                     <li><Link to="/favourite">Favourite</Link></li>
-                    <li><a href='#'>Contact</a></li>
+                    <li><Link >Contact </Link></li>
                 </ul>
+                <button className='btn'>Sign In</button>
                 <div className='hamburger' onClick={handleClick}>
                     {click ? (<FaRegTimesCircle className='icon' />) : (<HiOutlineMenuAlt4 className='icon' />)}
                 

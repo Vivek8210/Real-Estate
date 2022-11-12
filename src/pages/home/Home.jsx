@@ -1,13 +1,36 @@
 import React, { useEffect, useState } from 'react'
 import axios from "axios"
 import "./Home.css"
+
 import { BsHeart } from 'react-icons/bs';
+
+let count=0
 const Home = () => {
 
   const[data, setData]=useState([])
   const [loading, setLoading]=useState(true)
+  
 
 
+
+// ...........................post favourite data...........................................
+  const handleHeart=(ele)=>{
+    console.log(ele)
+    axios
+    .post("http://localhost:8080/cart", ele)
+    .then((res) => {
+      // console.log(res.data)
+      alert("data add to Favourite successfully");
+    })
+    .catch((err) => {
+      alert("data failed to add Favourite");
+    });
+   
+
+   }
+
+
+  //  -------------------Fetch All Data on Main Page------------------------------
   useEffect(()=>{
       setLoading(true)
 
@@ -18,22 +41,23 @@ const Home = () => {
       .then((res)=>{
           setLoading(false)
           setData(res.data)
-          console.log(res.data)
+          // console.log(res.data)
       }).catch((err)=>{
           setLoading(false)
           console.log(err)
       })
   },[setLoading])
-console.log(data.date)
+
  
   return (
     <>
-   <h1>See All best place</h1>
+    {/* ------------------------------display all data---------------------------------------- */}
+   <h1 style={{color:"#27AE60"}}>See All best place</h1>
      <div className="maincontainerHome">
     {data.map((ele)=>(
 
     
-    <div className="allContent" key={ele.id}>
+    <div className="allContent" key={ele.id}  >
       <img
         className="image"
         src={ele.cover}
@@ -42,7 +66,7 @@ console.log(data.date)
 
       <div className="priceAndfavourite">
         <div>${ele.Price}</div>
-        <div><BsHeart/></div>
+        <div className='Heart-favourite' ><BsHeart onClick={()=>handleHeart(ele)} style={{fontSize:"1.5rem"}} /></div>
       </div>
       <h4 className="name">{ele.name}</h4>
       <p className="location">{ele.location}</p>
